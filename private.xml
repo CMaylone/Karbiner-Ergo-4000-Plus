@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<root>
+  <!-- Applications -->
+  <appdef>
+    <appname>iTerm2</appname>
+    <equal>com.googlecode.iterm2</equal>
+  </appdef>
+
+  <appdef>
+    <appname>Chrome</appname>
+    <equal>com.google.Chrome</equal>
+  </appdef>
+
+  <appdef>
+    <appname>Terminal</appname>
+    <equal>com.apple.Terminal</equal>
+  </appdef>
+
+  <!-- Devices -->
+  <!-- Device Vendors -->
+  <devicevendordef>
+    <vendorname>MICROSOFT</vendorname>
+    <vendorid>0x045e</vendorid>
+  </devicevendordef>
+
+  <!-- Device Products -->
+  <deviceproductdef>
+    <productname>MICROSOFT_ERGO_4000</productname>
+    <productid>0x00db</productid>
+  </deviceproductdef>
+
+  <!-- vkopenurldefs used to launch app / run cmd / open urls -->
+
+  <!-- Shell command to launch screensaver -->
+  <vkopenurldef>
+    <name>KeyCode::VK_OPEN_URL_SHELL_launch_screensaver</name>
+    <url type="shell">
+      <![CDATA[   open -a /System/Library/Frameworks/ScreenSaver.framework/Versions/A/Resources/ScreenSaverEngine.app   ]]>
+    </url>
+  </vkopenurldef>
+
+  <!-- Items -->
+  <!-- Swap command and control except when in a terminal application -->
+  <item>
+    <name>Swap Command and Control (except iTerm2, Termnial)</name>
+    <identifier>command.to.control.iterm2</identifier>
+    <device_not>DeviceVendor::MICROSOFT,DeviceProduct::MICROSOFT_ERGO_4000</device_not>
+    <not>iTerm2</not>
+    <not>Terminal</not>
+    <autogen>
+      __KeyToKey__
+      KeyCode::COMMAND_L,
+      KeyCode::CONTROL_L
+    </autogen>
+    <autogen>
+      __KeyToKey__
+      KeyCode::CONTROL_L,
+      KeyCode::COMMAND_L
+    </autogen>
+  </item>
+
+  <item>
+    <name>Microsoft Ergo 4000: Control_L to Commmand_L, Option_L to CONTROL_L, COMMAND_L to OPTION_L (except iTerm2, Terminial)</name>
+    <appendix>Microsoft Ergo 4000 Keyboard</appendix>
+    <identifier>control.to.option.microsoft.ergo.4000</identifier>
+    <not>iTerm2</not>
+    <not>Terminal</not>
+    <device_only>DeviceVendor::MICROSOFT,DeviceProduct::MICROSOFT_ERGO_4000</device_only>
+    <autogen>
+      __KeyToKey__
+      KeyCode::CONTROL_L,
+      KeyCode::COMMAND_L
+    </autogen>
+    <autogen>
+      __KeyToKey__
+      KeyCode::OPTION_L,
+      KeyCode::CONTROL_L
+    </autogen>
+    <autogen>
+      __KeyToKey__
+      KeyCode::COMMAND_L,
+      KeyCode::OPTION_L
+    </autogen>
+  </item>
+
+  <item>
+    <name>Microsoft Ergo 4000: WINDOWS_L to ALT_L (COMMAND_L to OPTION_L)</name>
+    <appendix>Microsoft Ergo 4000 Keyboard</appendix>
+    <identifier>command.to.option.microsoft.ergo.4000</identifier>
+    <device_only>DeviceVendor::MICROSOFT,DeviceProduct::MICROSOFT_ERGO_4000</device_only>
+    <autogen>
+      __KeyToKey__
+      KeyCode::OPTION_L,
+      KeyCode::COMMAND_L
+    </autogen>
+    <autogen>
+      __KeyToKey__
+      KeyCode::COMMAND_L,
+      KeyCode::OPTION_L
+    </autogen>
+  </item>
+
+  <!-- Allow screen to lock similiar to Windows -->
+  <item>
+    <name>Launch screensaver with OPTION + L</name>
+    <identifier>lock.screen.option.L</identifier>
+    <autogen>
+      __KeyToKey__
+      KeyCode::L, ModifierFlag::OPTION_L,
+      KeyCode::VK_OPEN_URL_SHELL_launch_screensaver
+    </autogen>
+  </item>
+</root>
